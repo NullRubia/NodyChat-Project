@@ -14,7 +14,7 @@
 ### **프로젝트 구조(NodeJS단일 서버 구조)**
 
 ```
-NodyChat/
+NodyChat/           # 루트폴더
 ├── controller/     # 클라이언트 요청 처리, data 함수 호출 및 응답 반환
 ├── data/           # MongoDB Mongoose 모델 및 DB 접근 함수 (User CRUD 등)
 ├── db/             # 데이터베이스 연결 설정 및 공통 DB 유틸리티
@@ -26,10 +26,11 @@ NodyChat/
 └── mainPage/       # 채팅 메인 페이지 HTML/CSS/JS
 ```
 
-### **환경변수 설정**
+### **환경변수 및 환경 설정**
 
-NodyChat 안에 env.txt를 참고하여 .env를 본인에 맞게 설정
-login.html, signup.html의 아래 부분을 본인 키에 맞게 변경
+- 루트폴더에서 npm install 필요
+- NodyChat 안에 env.txt를 참고하여 .env를 본인에 맞게 설정
+- login.html, signup.html의 아래 부분을 본인 키에 맞게 변경
 
 ```
 <div class="g-recaptcha" data-sitekey="your_recaptcha_site_key"></div>
