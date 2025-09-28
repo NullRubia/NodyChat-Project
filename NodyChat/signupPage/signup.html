@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../signupPage/signup.js"></script>
+    <!--구글 reCAPTCHA API-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="../signupPage/signup.css" />
+    <title>signup</title>
+  </head>
+  <body>
+    <!--가입정보를 폼 형태로 묶어서 보냄-->
+    <form id="signupForm">
+      <h2>어서오세요!</h2>
+      <p>아이디</p>
+      <input
+        type="text"
+        name="userid"
+        id="Userid"
+        placeholder="아이디 입력(*아이디는 대소문자를 구분합니다.)"
+        required />
+      <p>닉네임</p>
+      <input
+        type="text"
+        name="nickname"
+        id="Nickname"
+        placeholder="닉네임 입력"
+        required />
+      <p>비밀번호</p>
+      <input
+        type="password"
+        id="PW"
+        name="passwd"
+        placeholder="비밀번호 입력"
+        required />
+      <p>비밀번호 확인</p>
+      <input
+        type="password"
+        id="CheckPW"
+        placeholder="비밀번호 재입력"
+        required />
+      <p>이메일</p>
+      <input
+        type="email"
+        id="Email"
+        name="email"
+        placeholder="이메일 입력"
+        required />
+      <p>전화번호</p>
+      <input type="tel" name="phone" placeholder="전화번호 입력" required />
+      <div class="sigContainer sigContainer-one">
+        <div class="g-recaptcha" data-sitekey="your_recaptcha_site_key"></div>
+        <button type="button" class="signup" onclick="SignupClick()">
+          가입하기
+          <div class="fill-one"></div>
+        </button>
+      </div>
+      <p id="Iogin" onclick="location.href='/'">이미 아이디가 있다면?</p>
+    </form>
+
+    <!--모달 팝업창 만들기-->
+    <!--전체창-->
+    <div id="verifyModal" class="modal">
+      <!--실제화면에 표시되는 팝업창 영역-->
+      <div class="modal-content">
+        <h3>전화번호 인증</h3>
+        <p>문자 인증번호를 입력하세요.</p>
+        <input type="text" placeholder="인증번호 입력" id="AuthNum" />
+        <br /><br />
+        <button onclick="submitForm()">확인</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "dependencies": {
+    "@google-cloud/speech": "^7.0.1",
+    "axios": "^1.9.0",
+    "bcrypt": "^5.1.1",
+    "cheerio": "^1.0.0",
+    "cookie-parser": "^1.4.7",
+    "coolsms-node-sdk": "^2.1.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.14.2",
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7",
+    "puppeteer": "^24.8.2",
+    "socket.io": "^4.8.1",
+    "url": "^0.11.4",
+    "uuid": "^11.1.0"
+  },
+  "name": "webchatting",
+  "version": "1.0.0",
+  "main": "WebChattingApp.mjs",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon WebChattingApp.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NullRubia/WebChatting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NullRubia/WebChatting/issues"
+  },
+  "homepage": "https://github.com/NullRubia/WebChatting#readme",
+  "description": ""
+}

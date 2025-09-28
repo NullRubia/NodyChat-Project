@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../loginPage/login.css" />
+    <script src="../loginPage/login.js" defer></script>
+    <!--구글 reCAPTCHA API-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <!--로그인 입력정보를 form형태로 묶어 POST로 넘김-->
+      <div class="loginbox">
+        <form action="/user/login" method="POST">
+          <p>아이디</p>
+          <input
+            type="text"
+            name="userid"
+            placeholder="아이디(*대소문자 구분)"
+            required />
+          <p>비밀번호</p>
+          <input
+            type="password"
+            name="passwd"
+            placeholder="비밀번호"
+            required />
+          <div class="sigContainer sigContainer-one">
+            <div
+              class="g-recaptcha"
+              data-sitekey="your_recaptcha_site_key"></div>
+            <button type="submit" class="signup">
+              로그인
+              <div class="fill-one"></div>
+            </button>
+          </div>
+        </form>
+
+        <!--각 글씨 클릭시 아이디/비밀번호 찾기 팝업창 생성, 가입페이지로 이동-->
+        <div class="infoText">
+          <p class="forgotAuth" onclick="openModal()">아이디/비밀번호 찾기</p>
+          <p class="signupButton" onclick="location.href='/signup'">가입하기</p>
+        </div>
+      </div>
+    </div>
+
+    <!--모달 팝업창 만들기-->
+    <!--전체창-->
+    <div id="myModal" class="modal">
+      <!--실제화면에 표시되는 팝업창 영역-->
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>아이디/비밀번호 찾기</h3>
+        <!-- 라디오 버튼 -->
+        <div class="modal-radioButton">
+          <label>
+            <input
+              type="radio"
+              name="findOption"
+              value="id"
+              checked
+              onchange="toggleFindForm()" />
+            <p>아이디 찾기</p>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="findOption"
+              value="pw"
+              onchange="toggleFindForm()" />
+            <p>비밀번호 찾기</p>
+          </label>
+        </div>
+
+        <!-- 동적으로 바뀌는 입력 폼 -->
+        <div id="findFormArea">
+          <!-- 기본은 이메일로 아이디 찾기 -->
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="가입한 이메일을 입력하세요"
+            required />
+          <button onclick="findID()">아이디 찾기</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+링크
+
+피그마
+https://www.figma.com/design/LSkEHaPwiW7TKdhtei14QT/WebChatting?node-id=0-1&p=f&t=3Y0tn1r9B357SJeH-0
+
+API명세서
+https://zinc-poet-1fb.notion.site/1fb68a7b6b02812991ccc6c9d7a2d04e?v=1fb68a7b6b02810e8f26000cb2442cb9
+
+QA테스트 시트
+https://docs.google.com/spreadsheets/d/1tHsf7KdyhUJUJITi7Ub37S93jiPTujb57CFe_v8rAMw/edit?gid=0#gid=0

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>채팅 앱</title>
+    <script src="../mainPage/main.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="../mainPage/main.css" />
+
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/665fc4c3b8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <!-- body 시작 -->
+  <body>
+    <div class="container">
+      <!-- 사이드바 (채팅방)-->
+      <aside class="sidebar">
+        <!-- 검색창 -->
+        <div class="search-room">
+          <input type="text" placeholder="채팅방 검색" />
+        </div>
+        <div class="chat-list-H"><h2>채팅방 목록</h2></div>
+        <!-- 검색창 끝 -->
+        <!-- 채팅 룸 -->
+        <div class="chat-list">
+          <h3 class="chat-room active">
+            <i class="fa-regular fa-comment"></i>
+            <p>EX채팅방</p>
+          </h3>
+        </div>
+
+        <!-- 채팅방 생성하기 -->
+        <button class="new-chat">
+          <i class="fa-solid fa-plus"></i> 채팅방생성하기
+        </button>
+        <div class="mypage-btn-room">
+          <button class="mypage-btn">
+            <i class="fa-solid fa-user"></i> My Page
+          </button>
+        </div>
+      </aside>
+
+      <!-- 메인 채팅창 -->
+      <main class="chat-area">
+        <header class="chat-header">
+          <div class="chat-header-title">웹 채팅에 오신걸 환영합니다.</div>
+          <button class="hamburger">&#9776;</button>
+        </header>
+        <section class="chat-window">
+          <!-- 여기 채팅 내용이 들어갑니다 -->
+          <div class="chat-content">
+            <!-- 마이페이지 -->
+            <div class="main-logo">
+              <img src="../mainPage/mainpage.png" alt="로고이미지" />
+            </div>
+            <div class="mypage block">
+              <div class="mypage-side">
+                <h1>내 정보</h1>
+                <h2 class="mypage-side-item1">개인 정보</h2>
+                <hr />
+                <h2 class="mypage-side-item2">친구 관리</h2>
+                <a href="/" class="logout">로그 아웃</a>
+              </div>
+
+              <div class="mypage-main">
+                <div class="profile-icon">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="info-list">
+                  <h2>닉네임</h2>
+                  <h3 class="nickname">@@@</h3>
+                  <h2>이메일</h2>
+                  <h3 class="email">@@@</h3>
+                  <h2>폰번호</h2>
+                  <h3 class="phone">@@@</h3>
+                  <div class="edit-fields" style="display: none">
+                    <h2>새 비밀번호</h2>
+                    <input
+                      type="password"
+                      id="newPasswd"
+                      placeholder="변경하지 않을시 공백"
+                    />
+                    <h2>비밀번호 확인</h2>
+                    <input
+                      type="password"
+                      id="confirmPasswd"
+                      placeholder="변경하지 않을시 공백"
+                    />
+                  </div>
+                </div>
+                <button class="edit-btn">내 정보 수정</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--채팅방생성 모달 팝업업-->
+        <div id="new-chat-modal" class="modal hidden">
+          <div class="new-chat-modal-content">
+            <h2>새 채팅방 생성</h2>
+            <br />
+            <p>*선택할 친구가 없다면 친구추가를 먼저 진행해 주세요*</p>
+            <p>*친구 추가는 마이페이지 친구관리에서 가능합니다.*</p>
+            <div class="friend-list">
+              <!-- 여기 JS에서 체크박스 친구 목록 채워넣음 -->
+            </div>
+            <label> 방 이름: <input type="text" name="room-name" /> </label
+            ><br /><br />
+            <div class="button-group">
+              <button class="new-chat-submit">생성</button>
+              <button class="modal-close-btn">취소</button>
+            </div>
+          </div>
+        </div>
+
+        <!--친구 초대 모달 팝업-->
+        <div id="invite-modal" class="modal hidden">
+          <div class="invite-modal-content">
+            <h2>친구 초대</h2>
+            <form id="invite-form">
+              <div class="friend-list">
+                <!-- 친구 목록 동적으로 삽입 -->
+              </div>
+              <div class="modal-actions">
+                <button class="invite-submit-btn" type="button">초대</button>
+                <button class="invite-cancel-btn">취소</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!--명령어 챗봇용 모달-->
+        <div id="command-modal" class="modal hidden">
+          <div class="chatbot-modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="command-result"></div>
+          </div>
+        </div>
+
+        <footer class="chat-input-area">
+          <button class="command-btn input-button-effect">
+            <i class="fa-solid fa-terminal"></i>
+          </button>
+          <button class="tts-toggle-btn input-button-effect">
+            <i class="fa-solid fa-volume-xmark"></i>
+          </button>
+          <button class="mic-btn input-button-effect">
+            <i class="fa-solid fa-microphone-slash"></i>
+          </button>
+          <div class="chat__input-box">
+            <input id="chat" type="text" placeholder="" required />
+            <label class="label-placeholder" for="chat"
+              >채팅을 입력하세요 . . .</label
+            >
+            <span></span>
+          </div>
+          <button class="send-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
